@@ -1,0 +1,10 @@
+@import 'src/js/components/app.scss';
+
+.page-title {
+	border: 2px solid $color_1;
+	background-color: $color_1;
+	color: white;
+	border-radius: 6px;
+	padding: 10px;
+	margin-bottom: 20px;
+}

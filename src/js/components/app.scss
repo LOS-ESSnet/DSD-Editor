@@ -1,0 +1,42 @@
+$color_1: #99004d;
+$color_2: #ff0080;
+$color_3: #ff66b3;
+$color_4: #ffb3d9;
+
+.centered {
+	text-align: center;
+}
+
+.app-title {
+	color: white;
+	background-image: linear-gradient(to right, $color_1, $color_3, $color_1);
+	padding: 2px;
+	margin-bottom: 10px;
+}
+
+.btn-group-vertical {
+	border: 2px solid $color_2;
+	border-radius: 6px;
+	margin-top: 100px;
+}
+.btn-group-vertical .btn {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.page-title {
+	border: 2px solid $color_1;
+	background-color: $color_1;
+	color: white;
+	border-radius: 6px;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.list-group {
+	margin-top: 100px;
+}
+.list-group-item {
+	padding: 10px;
+	border: 1px solid $color_2;
+}

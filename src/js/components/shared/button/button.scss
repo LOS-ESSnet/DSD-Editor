@@ -1,0 +1,19 @@
+@import 'src/js/components/app.scss';
+
+.button {
+	background-color: $color_3;
+	border-color: $color_3;
+	color: white;
+	&:hover {
+		color: white;
+	}
+	&:hover:not([disabled]) {
+		background-color: $color_2;
+		color: white;
+	}
+}
+
+.btn-line {
+	margin-top: 10px;
+	margin-bottom: 25px;
+}

@@ -1,0 +1,12 @@
+@import 'src/js/components/app.scss';
+
+.panel > .panel-heading {
+	background: $color_3;
+	color: #ffffff;
+	border-color: $color_3;
+}
+
+.panel > .panel-body {
+	background: #f3f3f3;
+	border-color: $color_3;
+}

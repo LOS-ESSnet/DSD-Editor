@@ -1,0 +1,80 @@
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix icod-aq: <http://id.insee.fr/codes/ageq65/> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+
+icod-aq:cs  a               skos:ConceptScheme ;
+        rdfs:seeAlso        icod-aq:Concept ;
+        skos:hasTopConcept  icod-aq:015 , icod-aq:020 , icod-aq:025 , icod-aq:030 , icod-aq:035 , icod-aq:040 , icod-aq:045 , icod-aq:050 , icod-aq:055 , icod-aq:060 , icod-aq:065 ;
+        skos:prefLabel      "Âge quinquennal"@fr , "Five-year age group"@en .
+
+icod-aq:Concept  a       rdfs:Class , owl:Class ;
+        rdfs:seeAlso     icod-aq:cs ;
+        rdfs:subClassOf  skos:Concept ;
+        skos:prefLabel   "Five-year age group"@en , "Âge quinquennal"@fr .
+
+icod-aq:015  a             icod-aq:Concept , skos:Concept ;
+        skos:inScheme      icod-aq:cs ;
+        skos:notation      "015" ;
+        skos:prefLabel     "15 to 19 years"@en , "15 à 19 ans"@fr ;
+        skos:topConceptOf  icod-aq:cs .
+
+icod-aq:020  a             icod-aq:Concept , skos:Concept ;
+        skos:inScheme      icod-aq:cs ;
+        skos:notation      "020" ;
+        skos:prefLabel     "20 to 24 years"@en , "20 à 24 ans"@fr ;
+        skos:topConceptOf  icod-aq:cs .
+
+icod-aq:025  a             icod-aq:Concept , skos:Concept ;
+        skos:inScheme      icod-aq:cs ;
+        skos:notation      "025" ;
+        skos:prefLabel     "25 to 29 years"@en , "25 à 29 ans"@fr ;
+        skos:topConceptOf  icod-aq:cs .
+
+icod-aq:030  a             icod-aq:Concept , skos:Concept ;
+        skos:inScheme      icod-aq:cs ;
+        skos:notation      "030" ;
+        skos:prefLabel     "30 to 34 years"@en , "30 à 34 ans"@fr ;
+        skos:topConceptOf  icod-aq:cs .
+
+icod-aq:035  a             icod-aq:Concept , skos:Concept ;
+        skos:inScheme      icod-aq:cs ;
+        skos:notation      "035" ;
+        skos:prefLabel     "35 to 39 years"@en , "35 à 39 ans"@fr ;
+        skos:topConceptOf  icod-aq:cs .
+
+icod-aq:040  a             icod-aq:Concept , skos:Concept ;
+        skos:inScheme      icod-aq:cs ;
+        skos:notation      "040" ;
+        skos:prefLabel     "40 to 44 years"@en , "40 à 44 ans"@fr ;
+        skos:topConceptOf  icod-aq:cs .
+
+icod-aq:045  a             icod-aq:Concept , skos:Concept ;
+        skos:inScheme      icod-aq:cs ;
+        skos:notation      "045" ;
+        skos:prefLabel     "45 to 49 years"@en , "45 à 49 ans"@fr ;
+        skos:topConceptOf  icod-aq:cs .
+
+icod-aq:050  a             icod-aq:Concept , skos:Concept ;
+        skos:inScheme      icod-aq:cs ;
+        skos:notation      "050" ;
+        skos:prefLabel     "50 to 54 years"@en , "50 à 54 ans"@fr ;
+        skos:topConceptOf  icod-aq:cs .
+
+icod-aq:055  a             icod-aq:Concept , skos:Concept ;
+        skos:inScheme      icod-aq:cs ;
+        skos:notation      "055" ;
+        skos:prefLabel     "55 to 59 years"@en , "55 à 59 ans"@fr ;
+        skos:topConceptOf  icod-aq:cs .
+
+icod-aq:060  a             icod-aq:Concept , skos:Concept ;
+        skos:inScheme      icod-aq:cs ;
+        skos:notation      "060" ;
+        skos:prefLabel     "60 to 64 years"@en , "60 à 64 ans"@fr ;
+        skos:topConceptOf  icod-aq:cs .
+
+icod-aq:065  a             icod-aq:Concept , skos:Concept ;
+        skos:inScheme      icod-aq:cs ;
+        skos:notation      "065" ;
+        skos:prefLabel     "65 years and over"@en , "65 ans ou plus"@fr ;
+        skos:topConceptOf  icod-aq:cs .
