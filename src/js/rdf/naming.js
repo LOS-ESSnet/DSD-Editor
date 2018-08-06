@@ -1,4 +1,5 @@
 export const CONCEPTS_GRAPH = 'http://rdf.insee.fr/graphs/concepts';
+export const CODES_GRAPH = 'http://rdf.insee.fr/graphs/codes';
 
 const BASE_DSD_GRAPH = 'http://rdf.insee.fr/graphs/dsd/';
 export const setDSDGraph = id => `${BASE_DSD_GRAPH}${id}`;
