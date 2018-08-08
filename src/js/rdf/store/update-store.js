@@ -33,7 +33,7 @@ export const exportFromStore = id => {
 };
 
 export const writeDSD = DSD => {
-	const { id, label, description } = DSD;
+	const { id, labelFr, labelEn, descriptionFr, descriptionEn } = DSD;
 	const cleanedId = cleanId(id);
 	const graph = setDSDGraph(cleanedId);
 	const DSDURI = setDSDURI(cleanedId);
@@ -45,8 +45,20 @@ export const writeDSD = DSD => {
 			graph
 		),
 		quad(DSDURI, getURI('dcterms', 'identifier'), literal(cleanedId), graph),
-		quad(DSDURI, getURI('skos', 'prefLabel'), literal(label), graph),
-		quad(DSDURI, getURI('dc', 'description'), literal(description), graph),
+		quad(DSDURI, getURI('rdfs', 'label'), literal(labelFr, 'fr'), graph),
+		quad(DSDURI, getURI('rdfs', 'label'), literal(labelEn, 'en'), graph),
+		quad(
+			DSDURI,
+			getURI('dc', 'description'),
+			literal(descriptionFr, 'fr'),
+			graph
+		),
+		quad(
+			DSDURI,
+			getURI('dc', 'description'),
+			literal(descriptionEn, 'en'),
+			graph
+		),
 	];
 	store.addQuads(quads);
 };

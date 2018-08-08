@@ -8,7 +8,7 @@ const inputInit = [
 	{ fileURL: `${BASE_URL}/dimensions.ttl`, graph: N.DIMENSIONS_GRAPH },
 	{ fileURL: `${BASE_URL}/measures.ttl`, graph: N.MEASURES_GRAPH },
 	{ fileURL: `${BASE_URL}/attributs.ttl`, graph: N.ATTRIBUTS_GRAPH },
-	{ fileURL: `${BASE_URL}/dsd-esane.ttl`, graph: N.setDSDGraph('esane') },
+	{ fileURL: `${BASE_URL}/pop5.ttl`, graph: N.setDSDGraph('pop5-2015-comarm') },
 ];
 
 export const init = () =>

@@ -1,7 +1,7 @@
 import { DataFactory } from 'n3';
 import store from 'js/rdf/store';
 import { getURI } from 'js/rdf/prefixes';
-import { getLiteral } from 'js/rdf/store';
+import { getObject, getLiteralByLang } from 'js/rdf/store';
 import { setDSDURI, setDSDGraph } from 'js/rdf/naming';
 
 const { namedNode } = DataFactory;
@@ -11,8 +11,8 @@ export const getDSDs = () => {
 	store.forSubjects(
 		s =>
 			DSDs.push({
-				id: getLiteral(s.value, getURI('dcterms', 'identifier')),
-				label: getLiteral(s.value, getURI('skos', 'prefLabel')),
+				id: getObject(s.value, getURI('dcterms', 'identifier')),
+				label: getLiteralByLang(s.value, getURI('rdfs', 'label'), 'fr'),
 			}),
 		null,
 		namedNode(getURI('qb', 'DataStructureDefinition'))
@@ -22,16 +22,28 @@ export const getDSDs = () => {
 
 export const getDSD = dsdId => ({
 	id: dsdId,
-	description: getLiteral(
+	descriptionFr: getLiteralByLang(
 		setDSDURI(dsdId),
 		getURI('dc', 'description'),
+		'fr',
 		setDSDGraph(dsdId)
 	),
-	label: getLiteral(
+	descriptionEn: getLiteralByLang(
 		setDSDURI(dsdId),
-		getURI('skos', 'prefLabel'),
+		getURI('dc', 'description'),
+		'en',
+		setDSDGraph(dsdId)
+	),
+	labelFr: getLiteralByLang(
+		setDSDURI(dsdId),
+		getURI('rdfs', 'label'),
+		'fr',
+		setDSDGraph(dsdId)
+	),
+	labelEn: getLiteralByLang(
+		setDSDURI(dsdId),
+		getURI('rdfs', 'label'),
+		'en',
 		setDSDGraph(dsdId)
 	),
 });
-
-export const getDSDComponents = dsdId => [];
