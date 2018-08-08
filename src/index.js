@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Root from 'js/components/router';
 import { init, importIntoStore } from 'js/rdf/store';
 import registerServiceWorker from './registerServiceWorker';
+import 'babel-polyfill';
 
 const arrayInit = init();
 
