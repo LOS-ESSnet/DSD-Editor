@@ -19,7 +19,7 @@ class Update extends Component {
 		return (
 			<Edition
 				data={getDSD(id)}
-				title={`${D.updateTitle} " ${getDSD(id).label} "`}
+				title={`${D.updateTitle} " ${getDSD(id).labelFr} "`}
 				save={this.save}
 			/>
 		);
