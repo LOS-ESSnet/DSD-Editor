@@ -31,6 +31,38 @@ export default {
 		fr: 'Mise à jour de la DSD',
 		en: 'Update DSD',
 	},
+	componentTitle: {
+		fr: 'Composants',
+		en: 'Components',
+	},
+	attributsTitle: {
+		fr: 'Attributs',
+		en: 'Attributs',
+	},
+	attributTitle: {
+		fr: 'Attribut',
+		en: 'Attribut',
+	},
+	dimensionsTitle: {
+		fr: 'Dimensions',
+		en: 'Dimensions',
+	},
+	dimensionTitle: {
+		fr: 'Dimension',
+		en: 'Dimension',
+	},
+	measuresTitle: {
+		fr: 'Mesures',
+		en: 'Measures',
+	},
+	measureTitle: {
+		fr: 'Mesure',
+		en: 'Measure',
+	},
+	emptyComponent: {
+		fr: 'Sélectionner un composant',
+		en: 'Select component',
+	},
 	// Buttons
 	btnReturn: {
 		fr: 'Retour',
@@ -96,6 +128,22 @@ export default {
 		fr: 'Libellé',
 		en: 'Label',
 	},
+	idEmpty: {
+		fr: "L'identifiant ne peut être vide",
+		en: "Identifier can't be empty",
+	},
+	labelEmpty: {
+		fr: 'Le libellé ne peut être vide',
+		en: "Label can't be empty",
+	},
+	idExisting: {
+		fr: 'Cet identifiant est déjà utilisé',
+		en: 'This identifier is already used',
+	},
+	labelExisting: {
+		fr: 'Ce libellé est déjà utilisé',
+		en: 'This label is already used',
+	},
 	search: {
 		fr: 'Recherchez...',
 		en: 'Search...',
@@ -103,5 +151,33 @@ export default {
 	searchLabelPlaceholder: {
 		fr: 'Libellé...',
 		en: 'Label...',
+	},
+	stringType: {
+		fr: 'Texte',
+		en: 'String',
+	},
+	floatType: {
+		fr: 'Nombre décimal',
+		en: 'Float',
+	},
+	intType: {
+		fr: 'Nombre entier',
+		en: 'Integer',
+	},
+	dateType: {
+		fr: 'Date',
+		en: 'Date',
+	},
+	rangeTitle: {
+		fr: 'Portée',
+		en: 'Range',
+	},
+	conceptTitle: {
+		fr: 'Concept',
+		en: 'Concept',
+	},
+	codeListTitle: {
+		fr: 'Liste de codes',
+		en: 'Code list',
 	},
 };
