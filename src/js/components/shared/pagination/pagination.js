@@ -23,8 +23,11 @@ class Pagination extends Component {
 			currentPage: Number(targetPage),
 		});
 	}
-	componentWillReceiveProps() {
-		this.goToPage(1);
+	componentWillReceiveProps(nextProps) {
+		const { currentPage } = this.state;
+		const { itemEls, itemsPerPage } = nextProps;
+		const pageMax = Math.ceil(itemEls.length / itemsPerPage) || 1;
+		if (currentPage > pageMax) this.goToPage(pageMax);
 	}
 
 	render() {
