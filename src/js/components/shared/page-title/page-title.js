@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './page-title.css';
 
-function PageTitle({ title, subtitle, col, offset, context }) {
-	const className = context ? `page-title-${context}` : 'page-title';
+function PageTitle({ title, subtitle, col, offset }) {
+	const className = 'page-title';
 	return (
 		<div className="row">
 			<div
@@ -11,10 +11,10 @@ function PageTitle({ title, subtitle, col, offset, context }) {
 					offset === undefined ? 1 : offset
 				}`}
 			>
-				<h2 className={className}>
-					{title}
-					{subtitle && <div>&quot; {subtitle} &quot;</div>}
-				</h2>
+				<div className={className}>
+					<h2>{title}</h2>
+					{subtitle && <h3>&quot; {subtitle} &quot;</h3>}
+				</div>
 			</div>
 		</div>
 	);
@@ -23,7 +23,6 @@ function PageTitle({ title, subtitle, col, offset, context }) {
 PageTitle.proptTypes = {
 	title: PropTypes.string.isRequired,
 	subtitle: PropTypes.string,
-	context: PropTypes.oneOf(['', 'concepts', 'classifications', 'operations']),
 };
 
 export default PageTitle;

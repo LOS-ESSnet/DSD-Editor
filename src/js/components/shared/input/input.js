@@ -4,7 +4,9 @@ import {
 	ControlLabel,
 	FormControl,
 	InputGroup,
+	HelpBlock,
 } from 'react-bootstrap';
+import flag from 'js/components/shared/flag';
 
 export default ({
 	id,
@@ -14,13 +16,32 @@ export default ({
 	value,
 	onChange,
 	disabled,
+	col,
+	lang,
+	helpMsg,
 }) => (
 	<div className="row">
-		<FormGroup controlId={id}>
-			{label && <ControlLabel>{label}</ControlLabel>}{' '}
-			{addOn && (
-				<InputGroup>
-					<InputGroup.Addon>{addOn}</InputGroup.Addon>
+		<div className={`col-md-${col ? col : '12'}`}>
+			<FormGroup controlId={id}>
+				{label && (
+					<ControlLabel>
+						{label} {flag(lang) ? '( ' : null} {flag(lang)}{' '}
+						{flag(lang) ? ' )' : null}
+					</ControlLabel>
+				)}{' '}
+				{addOn && (
+					<InputGroup>
+						<InputGroup.Addon>{addOn}</InputGroup.Addon>
+						<FormControl
+							componentClass="input"
+							placeholder={placeholder}
+							value={value}
+							onChange={onChange}
+							disabled={disabled}
+						/>
+					</InputGroup>
+				)}
+				{!addOn && (
 					<FormControl
 						componentClass="input"
 						placeholder={placeholder}
@@ -28,17 +49,9 @@ export default ({
 						onChange={onChange}
 						disabled={disabled}
 					/>
-				</InputGroup>
-			)}
-			{!addOn && (
-				<FormControl
-					componentClass="input"
-					placeholder={placeholder}
-					value={value}
-					onChange={onChange}
-					disabled={disabled}
-				/>
-			)}
-		</FormGroup>
+				)}
+				{helpMsg && <HelpBlock style={{ color: 'red' }}>{helpMsg}</HelpBlock>}
+			</FormGroup>
+		</div>
 	</div>
 );
