@@ -24,19 +24,16 @@ $color_4: #ffb3d9;
 	margin-bottom: 15px;
 }
 
-.page-title {
-	border: 2px solid $color_1;
-	background-color: $color_1;
-	color: white;
-	border-radius: 6px;
-	padding: 10px;
-	margin-bottom: 20px;
-}
-
-.list-group {
+.list-group-home {
 	margin-top: 100px;
 }
 .list-group-item {
 	padding: 10px;
 	border: 1px solid $color_2;
+}
+
+.img-flag {
+	height: 20px;
+	width: auto;
+	margin: 0;
 }

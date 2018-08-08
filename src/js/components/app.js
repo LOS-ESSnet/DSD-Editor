@@ -27,12 +27,12 @@ export default () => {
 						/>
 					</div>
 				</div>
-				<div className="col-md-7 col-md-offset-1 list-group">
+				<div className="col-md-7 col-md-offset-1 list-group-home">
 					<div className="row">
 						<ul>
-							{DSDs.map((d, i) => (
+							{DSDs.map(({ id, label }, i) => (
 								<li key={i} className="list-group-item">
-									<Link to={`/dsd/${d.id}`}>{d.label}</Link>
+									<Link to={`/dsd/${id}`}>{label}</Link>
 								</li>
 							))}
 						</ul>
