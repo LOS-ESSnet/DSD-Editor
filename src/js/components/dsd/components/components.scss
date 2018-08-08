@@ -1,0 +1,26 @@
+@import 'src/js/components/app.scss';
+
+.components {
+	padding: 0.2%;
+	border: solid 2px $color_2;
+	border-radius: 10px;
+}
+
+.badge-dimensions {
+	color: white;
+	background-color: green;
+}
+
+.badge-attributs {
+	color: white;
+	background-color: orange;
+}
+
+.badge-measures {
+	color: white;
+	background-color: purple;
+}
+
+.empty-component {
+	margin-top: 100px;
+}
