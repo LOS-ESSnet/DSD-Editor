@@ -3,6 +3,10 @@ export default {
 		fr: 'Gestionnaire de structures de données',
 		en: 'Data structure definition manager',
 	},
+	initApp: {
+		fr: "Initialisation de l'application ...",
+		en: 'Initializing the application ...',
+	},
 	importTitle: {
 		fr: 'Importer',
 		en: 'Import',
