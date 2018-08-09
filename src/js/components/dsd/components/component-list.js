@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Checkbox } from 'react-bootstrap';
 import Input from 'js/components/shared/input';
 import Pagination from 'js/components/shared/pagination';
 import D from 'js/i18n';
@@ -13,7 +14,7 @@ export default class ComponentList extends Component {
 		this.onChange = search => this.setState({ search });
 	}
 	render() {
-		const { checked, components, onChange } = this.props;
+		const { checked, onCheck, components, onChange } = this.props;
 		const { search } = this.state;
 		console.log(components);
 		const items = sortArrayByLabelFr(
@@ -21,12 +22,42 @@ export default class ComponentList extends Component {
 		).map(a => a.item);
 		return (
 			<React.Fragment>
-				<Input
-					value={search}
-					onChange={e => this.onChange(e.target.value)}
-					placeholder={D.searchLabelPlaceholder}
-				/>
-				<Pagination itemEls={items} itemsPerPage="10" />
+				<div className="row">
+					<div className="col-md-4 centered">
+						<Checkbox
+							defaultChecked={checked.attributs}
+							onChange={() => onCheck('attributs')}
+						>
+							{D.attributsTitle}
+						</Checkbox>
+					</div>
+					<div className="col-md-4 centered">
+						<Checkbox
+							defaultChecked={checked.dimensions}
+							onChange={() => onCheck('dimensions')}
+						>
+							{D.dimensionsTitle}
+						</Checkbox>
+					</div>
+					<div className="col-md-4 centered">
+						<Checkbox
+							defaultChecked={checked.measures}
+							onChange={() => onCheck('measures')}
+						>
+							{D.measuresTitle}
+						</Checkbox>
+					</div>
+				</div>
+				<div className="row">
+					<div className="col-md-10 col-md-offset-1 centered">
+						<Input
+							value={search}
+							onChange={e => this.onChange(e.target.value)}
+							placeholder={D.searchLabelPlaceholder}
+						/>
+						<Pagination itemEls={items} itemsPerPage="10" />
+					</div>
+				</div>
 			</React.Fragment>
 		);
 	}

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Checkbox } from 'react-bootstrap';
 import ComponentList from './component-list';
 import ComponentDetail from './component-detail';
 import D from 'js/i18n';
@@ -21,13 +20,6 @@ class Components extends Component {
 	}
 	render() {
 		const { components } = this.props;
-		if (
-			Object.entries(components).reduce(
-				(_, [key, values]) => _ + values.length,
-				0
-			) === 0
-		)
-			return null;
 		const { checked, URI, type } = this.state;
 		return (
 			<div className="components">
@@ -36,41 +28,12 @@ class Components extends Component {
 				</div>
 				<div className="row">
 					<div className="col-md-6">
-						<div className="row">
-							<div className="col-md-4 centered">
-								<Checkbox
-									defaultChecked={checked.attributs}
-									onChange={() => this.onCheck('attributs')}
-								>
-									{D.attributsTitle}
-								</Checkbox>
-							</div>
-							<div className="col-md-4 centered">
-								<Checkbox
-									defaultChecked={checked.dimensions}
-									onChange={() => this.onCheck('dimensions')}
-								>
-									{D.dimensionsTitle}
-								</Checkbox>
-							</div>
-							<div className="col-md-4 centered">
-								<Checkbox
-									defaultChecked={checked.measures}
-									onChange={() => this.onCheck('measures')}
-								>
-									{D.measuresTitle}
-								</Checkbox>
-							</div>
-						</div>
-						<div className="row">
-							<div className="col-md-10 col-md-offset-1 centered">
-								<ComponentList
-									checked={checked}
-									components={components}
-									onChange={this.changeURI}
-								/>
-							</div>
-						</div>
+						<ComponentList
+							checked={checked}
+							onCheck={this.onCheck}
+							components={components}
+							onChange={this.changeURI}
+						/>
 					</div>
 					<div className="col-md-6">
 						<ComponentDetail URI={URI} type={type} />
