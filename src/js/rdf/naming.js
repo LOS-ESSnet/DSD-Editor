@@ -13,7 +13,7 @@ export const setDSDGraph = id => `${BASE_DSD_GRAPH}${id}`;
 export const BASE_DSD_URI = 'http://id.insee.fr/meta/dsd/';
 export const setDSDURI = id => `${BASE_DSD_URI}${id}`;
 
-const types = [
+export const types = [
 	{ value: getURI('xsd', 'string'), label: D.stringType },
 	{ value: getURI('xsd', 'int'), label: D.intType },
 	{ value: getURI('xsd', 'float'), label: D.floatType },
@@ -23,4 +23,15 @@ const types = [
 export const getTypeLabel = URI => {
 	const obj = types.filter(t => t.value === URI);
 	return obj.length === 1 ? obj[0].label : 'Unknow type';
+};
+
+export const componentTypes = [
+	{ value: 'attributs', label: D.attributTitle },
+	{ value: 'dimensions', label: D.dimensionTitle },
+	{ value: 'measures', label: D.measureTitle },
+];
+
+export const getComponentTypeLabel = componentType => {
+	const obj = componentTypes.filter(t => t.value === componentType);
+	return obj.length === 1 ? obj[0].label : 'Unknow component';
 };

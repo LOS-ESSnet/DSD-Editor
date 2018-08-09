@@ -4,6 +4,7 @@ import Input from 'js/components/shared/input';
 import Pagination from 'js/components/shared/pagination';
 import D from 'js/i18n';
 import { sortArray, filterDeburr } from 'js/utils/array-utils';
+import { getComponentTypeLabel } from 'js/rdf/naming';
 
 const sortArrayByLabelFr = sortArray('labelFr');
 
@@ -16,7 +17,6 @@ export default class ComponentList extends Component {
 	render() {
 		const { checked, onCheck, components, onChange } = this.props;
 		const { search } = this.state;
-		console.log(components);
 		const items = sortArrayByLabelFr(
 			buildComponents(checked, components, onChange, search)
 		).map(a => a.item);
@@ -63,19 +63,6 @@ export default class ComponentList extends Component {
 	}
 }
 
-const getPillTitle = field => {
-	switch (field) {
-		case 'attributs':
-			return D.attributTitle;
-		case 'dimensions':
-			return D.dimensionTitle;
-		case 'measures':
-			return D.measureTitle;
-		default:
-			return 'Undefined';
-	}
-};
-
 const buildComponents = (checked, components, onChange, search) =>
 	Object.keys(components).reduce((_, field) => {
 		if (checked[field])
@@ -83,7 +70,7 @@ const buildComponents = (checked, components, onChange, search) =>
 				if (!filterDeburr(search)(labelFr)) return _;
 				const type = (
 					<span className={`badge badge-pill badge-${field}`}>
-						{getPillTitle(field)}
+						{getComponentTypeLabel(field)}
 					</span>
 				);
 				_.push({
