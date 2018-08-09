@@ -9,7 +9,7 @@ export default ({ checked, components, onChange }) => {
 	const items = sortArrayByLabelFr(
 		buildComponents(checked, components, onChange)
 	).map(a => a.item);
-	return <Pagination itemEls={items} itemsPerPage="2" />;
+	return <Pagination itemEls={items} itemsPerPage="10" />;
 };
 
 const getPillTitle = field => {
