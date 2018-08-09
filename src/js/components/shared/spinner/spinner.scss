@@ -1,0 +1,12 @@
+@import 'src/js/components/app.scss';
+
+.loading-row {
+	margin-top: 10%;
+}
+
+.loading > div {
+	fill: $color_3 !important;
+}
+.loading-text {
+	color: $color_3;
+}
