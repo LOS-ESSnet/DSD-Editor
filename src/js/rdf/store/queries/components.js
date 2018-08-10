@@ -37,6 +37,7 @@ const buildGetDetailedComponents = (dsdId, type) => {
 			components.push({
 				URI: c.value,
 				type,
+				id: getObject(c.value, getURI('dc', 'identifier')),
 				labelFr: getLiteralByLang(c.value, getURI('rdfs', 'label'), 'fr'),
 				labelEn: getLiteralByLang(c.value, getURI('rdfs', 'label'), 'en'),
 				conceptURI: getComponentConcept(c.value).URI,
@@ -98,6 +99,7 @@ const getComponentRange = componentURI => {
 		getURI('rdf', 'type'),
 		getURI('qb', 'CodedProperty')
 	);
+	console.log(isCoded);
 	if (!isCoded) {
 		const rangeType = getObject(componentURI, getURI('rdfs', 'range'));
 		range = { URI: rangeType, label: getTypeLabel(rangeType) };
