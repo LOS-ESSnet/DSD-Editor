@@ -10,10 +10,10 @@ const { namedNode } = DataFactory;
 const buildGetComponents = (dsdId, type) => {
 	let components = [];
 	store.forObjects(
-		s => {
+		c => {
 			components.push({
-				URI: s.value,
-				labelFr: getLiteralByLang(s.value, getURI('rdfs', 'label'), 'fr'),
+				URI: c.value,
+				labelFr: getLiteralByLang(c.value, getURI('rdfs', 'label'), 'fr'),
 				type,
 			});
 		},
@@ -24,14 +24,42 @@ const buildGetComponents = (dsdId, type) => {
 	return components;
 };
 
-const getAttributs = dsdId => buildGetComponents(dsdId, 'attribute');
-const getDimensions = dsdId => buildGetComponents(dsdId, 'dimension');
-const getMeasures = dsdId => buildGetComponents(dsdId, 'measure');
-
 export const getComponents = dsdId => [
-	...getAttributs(dsdId),
-	...getDimensions(dsdId),
-	...getMeasures(dsdId),
+	...buildGetComponents(dsdId, 'attribute'),
+	...buildGetComponents(dsdId, 'dimension'),
+	...buildGetComponents(dsdId, 'measure'),
+];
+
+const buildGetDetailedComponents = (dsdId, type) => {
+	let components = [];
+	store.forObjects(
+		c => {
+			components.push({
+				URI: c.value,
+				type,
+				labelFr: getLiteralByLang(c.value, getURI('rdfs', 'label'), 'fr'),
+				labelEn: getLiteralByLang(c.value, getURI('rdfs', 'label'), 'en'),
+				conceptURI: getComponentConcept(c.value).URI,
+				isCoded: isTripleExist(
+					c.value,
+					getURI('rdf', 'type'),
+					getURI('qb', 'CodedProperty')
+				),
+				rangeURI: getComponentRange(c.value).URI,
+				codeListURI: getComponentCodeList(c.value).URI,
+			});
+		},
+		null,
+		namedNode(getURI('qb', type)),
+		setDSDGraph(dsdId)
+	);
+	return components;
+};
+
+export const getDetailedComponents = dsdId => [
+	...buildGetDetailedComponents(dsdId, 'attribute'),
+	...buildGetDetailedComponents(dsdId, 'dimension'),
+	...buildGetDetailedComponents(dsdId, 'measure'),
 ];
 
 export const getComponent = componentURI => ({

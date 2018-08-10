@@ -25,7 +25,7 @@ export default class ComponentList extends Component {
 				<div className="row">
 					<div className="col-md-4 centered">
 						<Checkbox
-							defaultChecked={checked.attributs}
+							defaultChecked={checked.attribute}
 							onChange={() => onCheck('attribute')}
 						>
 							{D.attributsTitle}
@@ -33,7 +33,7 @@ export default class ComponentList extends Component {
 					</div>
 					<div className="col-md-4 centered">
 						<Checkbox
-							defaultChecked={checked.dimensions}
+							defaultChecked={checked.dimension}
 							onChange={() => onCheck('dimension')}
 						>
 							{D.dimensionsTitle}
@@ -41,7 +41,7 @@ export default class ComponentList extends Component {
 					</div>
 					<div className="col-md-4 centered">
 						<Checkbox
-							defaultChecked={checked.measures}
+							defaultChecked={checked.measure}
 							onChange={() => onCheck('measure')}
 						>
 							{D.measuresTitle}

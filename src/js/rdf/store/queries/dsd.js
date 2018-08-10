@@ -1,7 +1,11 @@
 import { DataFactory } from 'n3';
 import store from 'js/rdf/store';
 import { getURI } from 'js/rdf/prefixes';
-import { getObject, getLiteralByLang } from 'js/rdf/store';
+import {
+	getObject,
+	getLiteralByLang,
+	getDetailedComponents,
+} from 'js/rdf/store';
 import { setDSDURI, setDSDGraph } from 'js/rdf/naming';
 
 const { namedNode } = DataFactory;
@@ -46,4 +50,5 @@ export const getDSD = dsdId => ({
 		'en',
 		setDSDGraph(dsdId)
 	),
+	components: getDetailedComponents(dsdId),
 });
