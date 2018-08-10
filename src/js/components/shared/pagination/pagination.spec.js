@@ -38,14 +38,13 @@ describe('pagination', () => {
 		wrapper.setState({ currentPage: 2 });
 		expect(wrapper.state(['currentPage'])).toBe(2);
 		wrapper.setProps({ itemsPerPage: '5' });
-		expect(wrapper.state(['currentPage'])).toBe(1);
+		expect(wrapper.state(['currentPage'])).toBe(2);
 	});
 
 	it('return the right currentPage when we click to the page 2', () => {
 		const wrapper = shallow(
 			<Pagination itemEls={items} itemsPerPage="10" context="concepts" />
 		);
-		const event = { target: { id: '2' } };
 		expect(wrapper.state(['currentPage'])).toBe(1);
 		wrapper
 			.find('.pagination')
