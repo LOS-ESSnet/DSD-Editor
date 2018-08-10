@@ -1,5 +1,5 @@
 @prefix qb:    <http://purl.org/linked-data/cube#> .
-@prefix XSD:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
@@ -7,214 +7,109 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 
 <http://id.insee.fr/meta/dsd/pop5-2015-comarm>
-        a             qb:DataStructureDefinition ;
-        dcterms:identifier  "pop5-2015-comarm";
-        rdfs:label    "Data structure definition pour POP5, year 2015"@en , "Définition de structure de données pour POP5, année 2015"@fr ;
-        dc:description "Desc fr"@fr, "Desc en"@en;
-        qb:component  [ a           qb:ComponentSpecification ;
-                        qb:measure  <http://id.insee.fr/meta/mesure/pop15Plus>
-                      ] ;
-        qb:component  [ a             qb:ComponentSpecification ;
-                        qb:dimension  <http://id.insee.fr/meta/dimension/dimension/tactr>
-                      ] ;
-        qb:component  [ a             qb:ComponentSpecification ;
-                        qb:dimension  <http://id.insee.fr/meta/dimension/dimension/ageq65>
-                      ] ;
-        qb:component  [ a             qb:ComponentSpecification ;
-                        qb:dimension  <http://id.insee.fr/meta/dimension/dimension/sexe>
-                      ] ;
-        qb:component  [ a             qb:ComponentSpecification ;
-                        qb:dimension  <http://id.insee.fr/meta/cog2017/dimension/communeOuArrondissementMunicipal>
+        a              qb:DataStructureDefinition ;
+        rdfs:label     "Data structure definition pour POP5, year 2015"@en , "Définition de structure de données pour POP5, année 2015"@fr ;
+        <http://purl.org/dc/elements/1.1/description>
+                "Population de 15 ans et plus par tranche d'âge, sexe et type d'activité, année 2015"@fr , "Population age 15 or more by age group, sex and type of activity, year 2015"@en ;
+        dc:identifier  "pop5-2015-comarm" ;
+        qb:component   [ a             qb:ComponentSpecification ;
+                         qb:dimension  <http://id.insee.fr/meta/dimension/ageq65>
+                       ] ;
+        qb:component   [ a           qb:ComponentSpecification ;
+                         qb:measure  <http://id.insee.fr/meta/mesure/pop15Plus>
+                       ] ;
+        qb:component   [ a             qb:ComponentSpecification ;
+                         qb:dimension  <http://id.insee.fr/meta/dimension/sexe>
+                       ] ;
+        qb:component   [ a             qb:ComponentSpecification ;
+                         qb:dimension  <http://id.insee.fr/meta/dimension/tactr>
+                       ] ;
+        qb:component   [ a             qb:ComponentSpecification ;
+                         qb:dimension  <http://id.insee.fr/meta/cog2017/dimension/communeOuArrondissementMunicipal>
                       ] .
 
-<http://id.insee.fr/meta/dimension/dimension/ageq65>
+<http://id.insee.fr/meta/dimension/sexe>
         a                   qb:CodedProperty , qb:DimensionProperty ;
-        rdfs:label          "Âge quinquennal"@fr ;
-        rdfs:range          <http://id.insee.fr/codes/ageq65/AgeQuinquennal> ;
-        rdfs:subPropertyOf  <http://purl.org/linked-data/sdmx/2009/dimension#age> ;
-        qb:codeList         <http://id.insee.fr/codes/ageq65/agesQuinquennaux> ;
-        qb:concept          <http://purl.org/linked-data/sdmx/2009/concept#age> .
-
-<http://id.insee.fr/meta/dimension/dimension/tactr>
-        a            qb:CodedProperty , qb:DimensionProperty ;
-        rdfs:label   "Type d'activité"@fr ;
-        rdfs:range   <http://id.insee.fr/codes/tactr/TypeDActivite> ;
-        qb:codeList  <http://id.insee.fr/codes/tactr/typesDActivite> ;
-        qb:concept   <http://id.insee.fr/concepts/TypeDActivite> .
+        rdfs:label          "Sexe"@fr ;
+        rdfs:range          <http://id.insee.fr/codes/sexe/Sexe> ;
+        rdfs:subPropertyOf  <http://purl.org/linked-data/sdmx/2009/dimension#sex> ;
+        dc:identifier       "sexe"@fr ;
+        qb:codeList         <http://id.insee.fr/codes/sexe/sexes> ;
+        qb:concept          <http://purl.org/linked-data/sdmx/2009/concept#sex> .
 
 <http://id.insee.fr/meta/cog2017/dimension/communeOuArrondissementMunicipal>
         a                   qb:CodedProperty , qb:DimensionProperty ;
         rdfs:label          "Commune ou arrondissement municipal (COG 2017)"@fr ;
         rdfs:range          <http://id.insee.fr/codes/cog2017/CommuneOuArrondissementMunicipal> ;
         rdfs:subPropertyOf  <http://purl.org/linked-data/sdmx/2009/dimension#refArea> ;
+        dc:identifier       "COG 2017"@fr ;
         qb:codeList         <http://id.insee.fr/codes/cog2017/communesOuArrondissementsMunicipaux> ;
         qb:concept          <http://purl.org/linked-data/sdmx/2009/concept#refArea> .
 
 <http://id.insee.fr/meta/mesure/pop15Plus>
         a                   qb:MeasureProperty ;
         rdfs:label          "Population de 15 ans ou plus"@fr ;
-        rdfs:range          XSD:float ;
+        rdfs:range          xsd:int ;
         rdfs:subPropertyOf  <http://purl.org/linked-data/sdmx/2009/measure#obsValue> ;
+        dc:identifier       "POP15PLUS"@fr ;
         qb:concept          <http://purl.org/linked-data/sdmx/2009/concept#statPop> .
 
-<http://id.insee.fr/meta/dimension/dimension/sexe>
+<http://id.insee.fr/meta/dimension/tactr>
+        a              qb:CodedProperty , qb:DimensionProperty ;
+        rdfs:label     "Type d'activité"@fr ;
+        rdfs:range     <http://id.insee.fr/codes/tactr/TypeDActivite> ;
+        dc:identifier  "tactr"@fr ;
+        qb:codeList    <http://id.insee.fr/codes/tactr/typesDActivite> ;
+        qb:concept     <http://id.insee.fr/concepts/TypeDActivite> .
+
+<http://id.insee.fr/meta/dimension/ageq65>
         a                   qb:CodedProperty , qb:DimensionProperty ;
-        rdfs:label          "Sexe"@fr ;
-        rdfs:range          <http://id.insee.fr/codes/sexe/Sexe> ;
-        rdfs:subPropertyOf  <http://purl.org/linked-data/sdmx/2009/dimension#sex> ;
-        qb:codeList         <http://id.insee.fr/codes/sexe/sexes> ;
-        qb:concept          <http://purl.org/linked-data/sdmx/2009/concept#sex> .
+        rdfs:label          "Âge quinquennal"@fr ;
+        rdfs:range          <http://id.insee.fr/codes/ageq65/AgeQuinquennal> ;
+        rdfs:subPropertyOf  <http://purl.org/linked-data/sdmx/2009/dimension#age> ;
+        dc:identifier       "ageq65"@fr ;
+        qb:codeList         <http://id.insee.fr/codes/ageq65/agesQuinquennaux> ;
+        qb:concept          <http://purl.org/linked-data/sdmx/2009/concept#age> .
+
 
 
 <http://id.insee.fr/codes/sexe/Sexe>
         a                rdfs:Class , owl:Class ;
         rdfs:seeAlso     <http://id.insee.fr/codes/sexe/sexes> ;
         rdfs:subClassOf  skos:Concept ;
+        skos:notation    "sexe"@fr ;
         skos:prefLabel   "Sexe"@fr .
-
-<http://id.insee.fr/codes/sexe/2>
-        a               skos:Concept , <http://id.insee.fr/codes/sexe/Sexe> ;
-        skos:inScheme   <http://id.insee.fr/codes/sexe/sexes> ;
-        skos:notation   "2" ;
-        skos:prefLabel  "Femmes"@fr .
 
 <http://id.insee.fr/codes/sexe/sexes>
         a               skos:ConceptScheme ;
         rdfs:seeAlso    <http://id.insee.fr/codes/sexe/Sexe> ;
+        skos:notation   "SEXE"@fr ;
         skos:prefLabel  "Sexes"@fr .
 
-<http://id.insee.fr/codes/sexe/1>
-        a               skos:Concept , <http://id.insee.fr/codes/sexe/Sexe> ;
-        skos:inScheme   <http://id.insee.fr/codes/sexe/sexes> ;
-        skos:notation   "1" ;
-        skos:prefLabel  "Hommes"@fr .
-
-
-
-
-<http://id.insee.fr/codes/tactr/11>
-        a               skos:Concept , <http://id.insee.fr/codes/tactr/TypeDActivite> ;
-        skos:inScheme   <http://id.insee.fr/codes/tactr/typesDActivite> ;
-        skos:notation   "11" ;
-        skos:prefLabel  "Actifs ayant un emploi"@fr .
 
 <http://id.insee.fr/codes/tactr/typesDActivite>
         a               skos:ConceptScheme ;
         rdfs:seeAlso    <http://id.insee.fr/codes/tactr/TypeDActivite> ;
+        skos:notation   "TACTR"@fr ;
         skos:prefLabel  "Types d'activité"@fr .
 
 <http://id.insee.fr/codes/tactr/TypeDActivite>
         a                rdfs:Class , owl:Class ;
         rdfs:seeAlso     <http://id.insee.fr/codes/tactr/typesDActivite> ;
         rdfs:subClassOf  skos:Concept ;
+        skos:notation    "tactr"@fr ;
         skos:prefLabel   "Type d'activité"@fr .
 
-<http://id.insee.fr/codes/tactr/12>
-        a               skos:Concept , <http://id.insee.fr/codes/tactr/TypeDActivite> ;
-        skos:inScheme   <http://id.insee.fr/codes/tactr/typesDActivite> ;
-        skos:notation   "12" ;
-        skos:prefLabel  "Chômeurs"@fr .
-
-<http://id.insee.fr/codes/tactr/21>
-        a               skos:Concept , <http://id.insee.fr/codes/tactr/TypeDActivite> ;
-        skos:inScheme   <http://id.insee.fr/codes/tactr/typesDActivite> ;
-        skos:notation   "21" ;
-        skos:prefLabel  "Retraités ou préretraités"@fr .
-
-<http://id.insee.fr/codes/tactr/26>
-        a               skos:Concept , <http://id.insee.fr/codes/tactr/TypeDActivite> ;
-        skos:inScheme   <http://id.insee.fr/codes/tactr/typesDActivite> ;
-        skos:notation   "26" ;
-        skos:prefLabel  "Autres inactifs"@fr .
-
-<http://id.insee.fr/codes/tactr/24>
-        a               skos:Concept , <http://id.insee.fr/codes/tactr/TypeDActivite> ;
-        skos:inScheme   <http://id.insee.fr/codes/tactr/typesDActivite> ;
-        skos:notation   "24" ;
-        skos:prefLabel  "Femmes ou hommes au foyer"@fr .
-
-<http://id.insee.fr/codes/tactr/22>
-        a               skos:Concept , <http://id.insee.fr/codes/tactr/TypeDActivite> ;
-        skos:inScheme   <http://id.insee.fr/codes/tactr/typesDActivite> ;
-        skos:notation   "22" ;
-        skos:prefLabel  "Elèves, étudiants, stagiaires non rémunérés"@fr .
-
-
-
-
-<http://id.insee.fr/codes/ageq65/045>
-        a               skos:Concept , <http://id.insee.fr/codes/ageq65/AgeQuinquennal> ;
-        skos:inScheme   <http://id.insee.fr/codes/ageq65/agesQuinquennaux> ;
-        skos:notation   "045" ;
-        skos:prefLabel  "45 à 49 ans"@fr .
-
-<http://id.insee.fr/codes/ageq65/060>
-        a               skos:Concept , <http://id.insee.fr/codes/ageq65/AgeQuinquennal> ;
-        skos:inScheme   <http://id.insee.fr/codes/ageq65/agesQuinquennaux> ;
-        skos:notation   "060" ;
-        skos:prefLabel  "60 à 64 ans"@fr .
 
 <http://id.insee.fr/codes/ageq65/agesQuinquennaux>
         a               skos:ConceptScheme ;
         rdfs:seeAlso    <http://id.insee.fr/codes/ageq65/AgeQuinquennal> ;
+        skos:notation   "AGEQ65"@fr ;
         skos:prefLabel  "Âges quinquennaux"@fr .
-
-<http://id.insee.fr/codes/ageq65/065>
-        a               skos:Concept , <http://id.insee.fr/codes/ageq65/AgeQuinquennal> ;
-        skos:inScheme   <http://id.insee.fr/codes/ageq65/agesQuinquennaux> ;
-        skos:notation   "065" ;
-        skos:prefLabel  "65 ans ou plus"@fr .
-
-<http://id.insee.fr/codes/ageq65/015>
-        a               skos:Concept , <http://id.insee.fr/codes/ageq65/AgeQuinquennal> ;
-        skos:inScheme   <http://id.insee.fr/codes/ageq65/agesQuinquennaux> ;
-        skos:notation   "015" ;
-        skos:prefLabel  "15 à 19 ans"@fr .
-
-<http://id.insee.fr/codes/ageq65/030>
-        a               skos:Concept , <http://id.insee.fr/codes/ageq65/AgeQuinquennal> ;
-        skos:inScheme   <http://id.insee.fr/codes/ageq65/agesQuinquennaux> ;
-        skos:notation   "030" ;
-        skos:prefLabel  "30 à 34 ans"@fr .
-
-<http://id.insee.fr/codes/ageq65/035>
-        a               skos:Concept , <http://id.insee.fr/codes/ageq65/AgeQuinquennal> ;
-        skos:inScheme   <http://id.insee.fr/codes/ageq65/agesQuinquennaux> ;
-        skos:notation   "035" ;
-        skos:prefLabel  "35 à 39 ans"@fr .
-
-<http://id.insee.fr/codes/ageq65/050>
-        a               skos:Concept , <http://id.insee.fr/codes/ageq65/AgeQuinquennal> ;
-        skos:inScheme   <http://id.insee.fr/codes/ageq65/agesQuinquennaux> ;
-        skos:notation   "050" ;
-        skos:prefLabel  "50 à 54 ans"@fr .
-
-<http://id.insee.fr/codes/ageq65/055>
-        a               skos:Concept , <http://id.insee.fr/codes/ageq65/AgeQuinquennal> ;
-        skos:inScheme   <http://id.insee.fr/codes/ageq65/agesQuinquennaux> ;
-        skos:notation   "055" ;
-        skos:prefLabel  "55 à 59 ans"@fr .
 
 <http://id.insee.fr/codes/ageq65/AgeQuinquennal>
         a                rdfs:Class , owl:Class ;
         rdfs:seeAlso     <http://id.insee.fr/codes/ageq65/agesQuinquennaux> ;
         rdfs:subClassOf  skos:Concept ;
+        skos:notation    "ageq65"@fr ;
         skos:prefLabel   "Âge quinquennal"@fr .
-
-<http://id.insee.fr/codes/ageq65/020>
-        a               skos:Concept , <http://id.insee.fr/codes/ageq65/AgeQuinquennal> ;
-        skos:inScheme   <http://id.insee.fr/codes/ageq65/agesQuinquennaux> ;
-        skos:notation   "020" ;
-        skos:prefLabel  "20 à 24 ans"@fr .
-
-<http://id.insee.fr/codes/ageq65/025>
-        a               skos:Concept , <http://id.insee.fr/codes/ageq65/AgeQuinquennal> ;
-        skos:inScheme   <http://id.insee.fr/codes/ageq65/agesQuinquennaux> ;
-        skos:notation   "025" ;
-        skos:prefLabel  "25 à 29 ans"@fr .
-
-<http://id.insee.fr/codes/ageq65/040>
-        a               skos:Concept , <http://id.insee.fr/codes/ageq65/AgeQuinquennal> ;
-        skos:inScheme   <http://id.insee.fr/codes/ageq65/agesQuinquennaux> ;
-        skos:notation   "040" ;
-        skos:prefLabel  "40 à 44 ans"@fr .
