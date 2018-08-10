@@ -12,21 +12,21 @@ export default class ComponentList extends Component {
 	constructor() {
 		super();
 		this.state = { search: '' };
-		this.onChange = search => this.setState({ search });
+		this.onChangeSearch = search => this.setState({ search });
 	}
 	render() {
 		const { checked, onCheck, components, onChange } = this.props;
 		const { search } = this.state;
 		const items = sortArrayByLabelFr(
 			buildComponents(checked, components, onChange, search)
-		).map(a => a.item);
+		);
 		return (
 			<React.Fragment>
 				<div className="row">
 					<div className="col-md-4 centered">
 						<Checkbox
 							defaultChecked={checked.attributs}
-							onChange={() => onCheck('attributs')}
+							onChange={() => onCheck('attribute')}
 						>
 							{D.attributsTitle}
 						</Checkbox>
@@ -34,7 +34,7 @@ export default class ComponentList extends Component {
 					<div className="col-md-4 centered">
 						<Checkbox
 							defaultChecked={checked.dimensions}
-							onChange={() => onCheck('dimensions')}
+							onChange={() => onCheck('dimension')}
 						>
 							{D.dimensionsTitle}
 						</Checkbox>
@@ -42,7 +42,7 @@ export default class ComponentList extends Component {
 					<div className="col-md-4 centered">
 						<Checkbox
 							defaultChecked={checked.measures}
-							onChange={() => onCheck('measures')}
+							onChange={() => onCheck('measure')}
 						>
 							{D.measuresTitle}
 						</Checkbox>
@@ -52,7 +52,7 @@ export default class ComponentList extends Component {
 					<div className="col-md-10 col-md-offset-1 centered">
 						<Input
 							value={search}
-							onChange={e => this.onChange(e.target.value)}
+							onChange={e => this.onChangeSearch(e.target.value)}
 							placeholder={D.searchLabelPlaceholder}
 						/>
 						<Pagination itemEls={items} itemsPerPage="10" />
@@ -63,29 +63,26 @@ export default class ComponentList extends Component {
 	}
 }
 
+const Badge = ({ type }) => (
+	<span className={`badge badge-pill badge-${type}`}>
+		{getComponentTypeLabel(type)}
+	</span>
+);
+
 const buildComponents = (checked, components, onChange, search) =>
-	Object.keys(components).reduce((_, field) => {
-		if (checked[field])
-			components[field].forEach(({ URI, labelFr }, i) => {
-				if (!filterDeburr(search)(labelFr)) return _;
-				const type = (
-					<span className={`badge badge-pill badge-${field}`}>
-						{getComponentTypeLabel(field)}
-					</span>
-				);
-				_.push({
-					labelFr,
-					item: (
-						<div className="row" key={`${field}-${i}`}>
-							<button
-								onClick={() => onChange(URI, type)}
-								className="btn-no-btn list-group-item"
-							>
-								<span>{labelFr}</span> {type}
-							</button>
-						</div>
-					),
-				});
-			});
+	components.reduce((_, component, i) => {
+		const { URI, labelFr, type } = component;
+		if (checked[type] && filterDeburr(search)(labelFr)) {
+			_.push(
+				<div className="row" key={`${type}-${i}`}>
+					<button
+						onClick={() => onChange(URI, type)}
+						className="btn-no-btn list-group-item"
+					>
+						<span>{labelFr}</span> <Badge type={type} />
+					</button>
+				</div>
+			);
+		}
 		return _;
 	}, []);

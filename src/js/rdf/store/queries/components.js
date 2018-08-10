@@ -14,6 +14,7 @@ const buildGetComponents = (dsdId, type) => {
 			components.push({
 				URI: s.value,
 				labelFr: getLiteralByLang(s.value, getURI('rdfs', 'label'), 'fr'),
+				type,
 			});
 		},
 		null,
@@ -27,11 +28,11 @@ const getAttributs = dsdId => buildGetComponents(dsdId, 'attribute');
 const getDimensions = dsdId => buildGetComponents(dsdId, 'dimension');
 const getMeasures = dsdId => buildGetComponents(dsdId, 'measure');
 
-export const getComponents = dsdId => ({
-	attributs: getAttributs(dsdId),
-	dimensions: getDimensions(dsdId),
-	measures: getMeasures(dsdId),
-});
+export const getComponents = dsdId => [
+	...getAttributs(dsdId),
+	...getDimensions(dsdId),
+	...getMeasures(dsdId),
+];
 
 export const getComponent = componentURI => ({
 	labelFr: getLiteralByLang(componentURI, getURI('rdfs', 'label'), 'fr'),

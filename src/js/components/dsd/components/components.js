@@ -8,7 +8,7 @@ class Components extends Component {
 	constructor() {
 		super();
 		this.state = {
-			checked: { attributs: true, dimensions: true, measures: true },
+			checked: { attribute: true, dimension: true, measure: true },
 			URI: '',
 			type: '',
 		};
