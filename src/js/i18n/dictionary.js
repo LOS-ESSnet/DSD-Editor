@@ -104,6 +104,10 @@ export default {
 		fr: 'Supprimer',
 		en: 'Delete',
 	},
+	btnValid: {
+		fr: 'Valider',
+		en: 'Valid',
+	},
 	noResult: {
 		fr: 'Aucun résultat',
 		en: 'No results',
@@ -183,5 +187,9 @@ export default {
 	codeListTitle: {
 		fr: 'Liste de codes',
 		en: 'Code list',
+	},
+	componentTypeTitle: {
+		fr: 'Type de composant ...',
+		en: 'Component type ...',
 	},
 };
