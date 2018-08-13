@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormGroup, ControlLabel } from 'react-bootstrap';
 import Select from 'react-select';
 import './select.css';
 
 function mySelect({
+	id,
+	label,
 	value,
 	placeholder,
 	options,
@@ -14,7 +17,8 @@ function mySelect({
 }) {
 	const isClearable = unclearable ? false : true;
 	return (
-		<div className="select">
+		<FormGroup controlId={id}>
+			{label && <ControlLabel>{label}</ControlLabel>}{' '}
 			<Select
 				value={value}
 				placeholder={placeholder}
@@ -24,7 +28,7 @@ function mySelect({
 				searchable={searchable}
 				multi={multi}
 			/>
-		</div>
+		</FormGroup>
 	);
 }
 
