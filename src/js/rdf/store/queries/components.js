@@ -99,7 +99,6 @@ const getComponentRange = componentURI => {
 		getURI('rdf', 'type'),
 		getURI('qb', 'CodedProperty')
 	);
-	console.log(isCoded);
 	if (!isCoded) {
 		const rangeType = getObject(componentURI, getURI('rdfs', 'range'));
 		range = { URI: rangeType, label: getTypeLabel(rangeType) };

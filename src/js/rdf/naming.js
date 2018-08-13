@@ -29,12 +29,21 @@ export const getTypeLabel = URI => {
 };
 
 export const componentTypes = [
-	{ value: 'attribut', label: D.attributTitle },
-	{ value: 'dimension', label: D.dimensionTitle },
-	{ value: 'measure', label: D.measureTitle },
+	{ value: 'attribute', predicat: 'AttributeProperty', label: D.attributTitle },
+	{
+		value: 'dimension',
+		predicat: 'DimensionProperty',
+		label: D.dimensionTitle,
+	},
+	{ value: 'measure', predicat: 'MeasureProperty', label: D.measureTitle },
 ];
 
 export const getComponentTypeLabel = componentType => {
 	const obj = componentTypes.filter(t => t.value === componentType);
 	return obj.length === 1 ? obj[0].label : 'Unknow component';
+};
+
+export const getComponentTypePredicat = componentType => {
+	const obj = componentTypes.filter(t => t.value === componentType);
+	return obj.length === 1 ? obj[0].predicat : '';
 };
