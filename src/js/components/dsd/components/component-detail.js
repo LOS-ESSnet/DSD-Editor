@@ -1,5 +1,6 @@
 import React from 'react';
 import PageTitle from 'js/components/shared/page-title';
+import Badge from 'js/components/shared/badge';
 import { getComponent } from 'js/rdf/store';
 import D from 'js/i18n';
 import flag from 'js/components/shared/flag';
@@ -14,7 +15,9 @@ export default ({ URI, type }) => {
 	return (
 		<div>
 			<PageTitle title={labelFr} subtitle={labelEn} col={12} offset={0} />
-			<div className="centered">{type}</div>
+			<div className="centered">
+				<Badge type={type} />
+			</div>
 			<ul>
 				<li>
 					{D.conceptTitle} :{' '}

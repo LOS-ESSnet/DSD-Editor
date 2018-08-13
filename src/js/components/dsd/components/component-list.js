@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Checkbox } from 'react-bootstrap';
 import Input from 'js/components/shared/input';
 import Pagination from 'js/components/shared/pagination';
+import Badge from 'js/components/shared/badge';
 import D from 'js/i18n';
 import { sortArray, filterDeburr } from 'js/utils/array-utils';
-import { getComponentTypeLabel } from 'js/rdf/naming';
 
 const sortArrayByLabelFr = sortArray('labelFr');
 
@@ -66,12 +66,6 @@ export default class ComponentList extends Component {
 		);
 	}
 }
-
-const Badge = ({ type }) => (
-	<span className={`badge badge-pill badge-${type}`}>
-		{getComponentTypeLabel(type)}
-	</span>
-);
 
 const buildComponents = (checked, components, onChange, search) =>
 	components.reduce((_, component, i) => {
