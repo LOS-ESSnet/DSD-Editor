@@ -2,7 +2,11 @@ import N3, { DataFactory } from 'n3';
 import FileSaver from 'file-saver';
 import store from 'js/rdf/store';
 import { PREFIXES } from 'js/rdf/prefixes';
-import { setDSDURI, setDSDGraph } from 'js/rdf/naming';
+import {
+	setDSDURI,
+	setDSDGraph,
+	getComponentTypePredicat,
+} from 'js/rdf/naming';
 import { getURI } from 'js/rdf/prefixes';
 import { cleanId } from 'js/utils/string-utils';
 
@@ -33,11 +37,18 @@ export const exportFromStore = id => {
 };
 
 export const writeDSD = DSD => {
-	const { id, labelFr, labelEn, descriptionFr, descriptionEn } = DSD;
+	const {
+		id,
+		labelFr,
+		labelEn,
+		descriptionFr,
+		descriptionEn,
+		components,
+	} = DSD;
 	const cleanedId = cleanId(id);
 	const graph = setDSDGraph(cleanedId);
 	const DSDURI = setDSDURI(cleanedId);
-	const quads = [
+	const generalQuads = [
 		quad(
 			DSDURI,
 			getURI('rdf', 'type'),
@@ -60,6 +71,34 @@ export const writeDSD = DSD => {
 			graph
 		),
 	];
+	const quads = components.reduce((_, c) => {
+		const blank = store.createBlankNode().id;
+		_.push(quad(DSDURI, getURI('qb', 'Component'), blank, graph));
+		_.push(
+			quad(
+				blank,
+				getURI('rdf', 'type'),
+				getURI('qb', 'ComponentSpecification'),
+				graph
+			)
+		);
+		_.push(quad(blank, getURI('qb', c.type), c.URI, graph));
+		_.push(
+			quad(
+				c.URI,
+				getURI('rdf', 'type'),
+				getComponentTypePredicat(c.type),
+				graph
+			)
+		);
+		_.push(
+			quad(c.URI, getURI('rdfs', 'label'), literal(c.labelFr, 'fr'), graph)
+		);
+		_.push(
+			quad(c.URI, getURI('rdfs', 'label'), literal(c.labelEn, 'en'), graph)
+		);
+		return _;
+	}, generalQuads);
 	store.addQuads(quads);
 };
 

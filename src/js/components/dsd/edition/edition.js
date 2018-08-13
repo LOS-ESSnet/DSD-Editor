@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import PageTitle from 'js/components/shared/page-title';
 import Input from 'js/components/shared/input';
 import Controls from './controls';
+import Components from './components';
 import D from 'js/i18n';
 import { dsdEditionMessage } from 'js/utils/edition-utils';
+import { setComponentURI } from 'js/rdf/naming';
 
 class Edition extends Component {
 	constructor(props) {
@@ -14,14 +16,44 @@ class Edition extends Component {
 			labelEn: '',
 			descriptionFr: '',
 			descriptionEn: '',
+			components: [],
 		};
-		this.state = Object.assign(defaultState, props.data);
+		this.state = { ...defaultState, ...props.data };
 		this.onChange = (field, value) => this.setState({ [field]: value });
+		this.addComponent = component => {
+			const { components } = this.state;
+			const { type, id, ...newComponent } = component;
+			const URI = setComponentURI(id, type);
+			const c = components.filter(c => c.id !== id);
+			c.push({
+				...newComponent,
+				URI,
+				type,
+				id,
+			});
+			this.setState({ URI: '', components: c });
+		};
+		this.deleteComponent = component => {
+			const { components } = this.state;
+			const { type, id } = component;
+			if (!type || !id) this.setState({ URI: '' });
+			this.setState({
+				URI: '',
+				components: components.filter(c => c.id !== id),
+			});
+		};
 		this.save = () => this.props.save(this.state);
 	}
 	render() {
 		const { title, creation } = this.props;
-		const { id, labelFr, labelEn, descriptionFr, descriptionEn } = this.state;
+		const {
+			id,
+			labelFr,
+			labelEn,
+			descriptionFr,
+			descriptionEn,
+			components,
+		} = this.state;
 		const helpMsgObj = dsdEditionMessage(id, labelFr, creation);
 		return (
 			<React.Fragment>
@@ -81,6 +113,11 @@ class Edition extends Component {
 						/>
 					</div>
 				</div>
+				<Components
+					components={components}
+					addComponent={this.addComponent}
+					deleteComponent={this.deleteComponent}
+				/>
 			</React.Fragment>
 		);
 	}
