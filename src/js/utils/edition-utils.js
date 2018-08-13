@@ -6,7 +6,7 @@ export const dsdEditionMessage = (id, labelFr, creation) => {
 	let msgId = '',
 		msgLabelFr = '';
 	if (!id) msgId = D.idEmpty;
-	if (!labelFr) msgLabelFr = D.idEmpty;
+	if (!labelFr) msgLabelFr = D.labelEmpty;
 	if (id || labelFr) {
 		const DSDs = getDSDs();
 		const ids = DSDs.map(d => {
