@@ -17,9 +17,13 @@ export default class ComponentList extends Component {
 	render() {
 		const { checked, onCheck, components, onChange } = this.props;
 		const { search } = this.state;
-		const items = sortArrayByLabelFr(
-			buildComponents(checked, components, onChange, search)
+		const items = buildComponents(
+			checked,
+			sortArrayByLabelFr(components),
+			onChange,
+			search
 		);
+
 		return (
 			<React.Fragment>
 				<div className="row">
