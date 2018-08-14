@@ -39,7 +39,7 @@ mySelect.defaultProps = {
 };
 
 mySelect.propTypes = {
-	value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+	value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 	placeholder: PropTypes.string.isRequired,
 	options: PropTypes.arrayOf(
 		PropTypes.shape({
