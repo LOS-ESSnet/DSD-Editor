@@ -1,0 +1,41 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix qb: <http://purl.org/linked-data/cube#>.
+@prefix sdmx-concept: <http://purl.org/linked-data/sdmx/2009/concept#>.
+
+<http://id.insee.fr/meta/dsd/my-dsd> a qb:DataStructureDefinition;
+    rdfs:label "Ma DSD"@fr, "My DSD"@en;
+    dc:description "Ma description de DSD"@fr, "My DSD description"@en;
+    dcterms:identifier "my-dsd";
+    qb:Component _:b6, _:b7, _:b8.
+
+_:b6 a qb:ComponentSpecification;
+    qb:dimension <http://id.insee.fr/meta/dsd/dimension/d>.
+_:b7 a qb:ComponentSpecification;
+    qb:measure <http://id.insee.fr/meta/dsd/measure/m>.
+_:b8 a qb:ComponentSpecification;
+    qb:attribute <http://id.insee.fr/meta/dsd/attribute/a>;
+	qb:componentAttachment qb:Slice.
+
+<http://id.insee.fr/meta/dsd/attribute/a> a qb:CodedProperty, qb:AttributeProperty;
+    rdfs:label "Mon attribut"@fr, "My attribute"@en;
+    dcterms:identifier "a";
+    rdfs:range <http://purl.org/linked-data/sdmx/2009/code#Freq>;
+    qb:codeList <http://purl.org/linked-data/sdmx/2009/code#freq>;
+    qb:concept sdmx-concept:freq.
+
+<http://id.insee.fr/meta/dsd/dimension/d> a qb:CodedProperty, qb:DimensionProperty;
+    rdfs:label "Ma dimension"@fr, "My dimension"@en;
+    dcterms:identifier "d";
+    rdfs:range <http://purl.org/linked-data/sdmx/2009/code#Sex>;
+    qb:codeList <http://purl.org/linked-data/sdmx/2009/code#sex>;
+    qb:concept sdmx-concept:sex.
+
+<http://id.insee.fr/meta/dsd/measure/m> a qb:MeasureProperty;
+    rdfs:label "Ma mesure"@fr, "My mesure"@en;
+    dcterms:identifier "m";
+    rdfs:range xsd:int;
+    qb:concept sdmx-concept:statPop
