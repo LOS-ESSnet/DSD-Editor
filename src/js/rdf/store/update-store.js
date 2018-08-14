@@ -83,9 +83,14 @@ export const writeDSD = DSD => {
 			)
 		);
 		_.push(quad(blank, getURI('qb', c.type), c.URI, graph));
-		if (c.attachement) {
+		if (c.attachementURI) {
 			_.push(
-				quad(blank, getURI('qb', 'componentAttachment'), c.attachement, graph)
+				quad(
+					blank,
+					getURI('qb', 'componentAttachment'),
+					c.attachementURI,
+					graph
+				)
 			);
 		}
 		_.push(

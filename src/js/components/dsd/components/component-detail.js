@@ -2,14 +2,21 @@ import React from 'react';
 import PageTitle from 'js/components/shared/page-title';
 import Badge from 'js/components/shared/badge';
 import { getComponent } from 'js/rdf/store';
+import { getAttachementLabel } from 'js/rdf/naming';
 import D from 'js/i18n';
 import flag from 'js/components/shared/flag';
 import './components.css';
 
 export default ({ URI, type }) => {
-	const { labelFr, labelEn, concept, isCoded, range, codeList } = getComponent(
-		URI
-	);
+	const {
+		labelFr,
+		labelEn,
+		concept,
+		isCoded,
+		range,
+		codeList,
+		attachementURI,
+	} = getComponent(URI);
 	if (!URI)
 		return <h3 className="centered empty-component">{D.emptyComponent}</h3>;
 	return (
@@ -19,6 +26,11 @@ export default ({ URI, type }) => {
 				<Badge type={type} />
 			</div>
 			<ul>
+				{attachementURI && (
+					<li>
+						{D.attachementTitle} : {getAttachementLabel(attachementURI)}
+					</li>
+				)}
 				<li>
 					{D.conceptTitle} :{' '}
 					<ul>

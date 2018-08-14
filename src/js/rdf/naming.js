@@ -57,3 +57,8 @@ const attachements = [
 ];
 
 export const getAttachements = () => sortArray('label')(attachements);
+
+export const getAttachementLabel = attachementURI => {
+	const obj = attachements.filter(t => t.value === attachementURI);
+	return obj.length === 1 ? obj[0].label : 'Unknow';
+};

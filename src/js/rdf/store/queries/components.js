@@ -1,7 +1,12 @@
 import { DataFactory } from 'n3';
 import store from 'js/rdf/store';
 import { getURI } from 'js/rdf/prefixes';
-import { getLiteralByLang, isTripleExist, getObject } from 'js/rdf/store';
+import {
+	getLiteralByLang,
+	isTripleExist,
+	getObject,
+	getSubject,
+} from 'js/rdf/store';
 import { getTypeLabel } from 'js/rdf/naming';
 import { setDSDGraph } from 'js/rdf/naming';
 
@@ -38,6 +43,10 @@ const buildGetDetailedComponents = (dsdId, type) => {
 				URI: c.value,
 				type,
 				id: getObject(c.value, getURI('dcterms', 'identifier')),
+				attachementURI: getObject(
+					'_:' + getSubject(getURI('qb', type), c.value),
+					getURI('qb', 'componentAttachment')
+				),
 				labelFr: getLiteralByLang(c.value, getURI('rdfs', 'label'), 'fr'),
 				labelEn: getLiteralByLang(c.value, getURI('rdfs', 'label'), 'en'),
 				conceptURI: getComponentConcept(c.value).URI,
@@ -71,6 +80,10 @@ export const getComponent = componentURI => ({
 		componentURI,
 		getURI('rdf', 'type'),
 		getURI('qb', 'CodedProperty')
+	),
+	attachementURI: getObject(
+		'_:' + getSubject(null, componentURI),
+		getURI('qb', 'componentAttachment')
 	),
 	range: getComponentRange(componentURI),
 	codeList: getComponentCodeList(componentURI),

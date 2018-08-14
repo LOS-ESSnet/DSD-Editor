@@ -2,7 +2,7 @@ import N3 from 'n3';
 import store from 'js/rdf/store';
 
 const { DataFactory } = N3;
-const { namedNode, literal } = DataFactory;
+const { namedNode } = DataFactory;
 
 export const getLiteralByLang = (URI, predicat, lang, graph) => {
 	const array = store.getObjects(
@@ -18,6 +18,15 @@ export const getObject = (URI, predicat, graph) => {
 	const array = store.getObjects(
 		namedNode(URI),
 		namedNode(predicat),
+		graph ? namedNode(graph) : null
+	);
+	return array.length === 0 ? '' : array[0].value;
+};
+
+export const getSubject = (predicat, object, graph) => {
+	const array = store.getSubjects(
+		predicat,
+		object,
 		graph ? namedNode(graph) : null
 	);
 	return array.length === 0 ? '' : array[0].value;
@@ -41,10 +50,3 @@ export const hasObjects = (URI, predicat, graph) => {
 	);
 	return array.length !== 0;
 };
-
-export const getResource = (predicat, lit, graph) =>
-	store.getSubjects(
-		namedNode(predicat),
-		literal(lit),
-		graph ? namedNode(graph) : null
-	);

@@ -11,7 +11,7 @@ import { getCodeLists, getConcepts } from 'js/rdf/store';
 const defaultComponent = {
 	id: '',
 	type: '',
-	attachement: '',
+	attachementURI: '',
 	labelFr: '',
 	labelEn: '',
 	conceptURI: '',
@@ -102,14 +102,14 @@ class DetailsEdition extends Component {
 				/>
 				{component.type === 'attribute' && (
 					<Select
-						id="attachement"
+						id="attachementURI"
 						label={D.attachementTitle}
 						value={getAttachements().find(
-							c => c.value === component.attachement
+							c => c.value === component.attachementURI
 						)}
 						placeholder={D.attachementPlaceholder}
 						options={getAttachements()}
-						onChange={e => this.onChange('attachement', e.value)}
+						onChange={e => this.onChange('attachementURI', e.value)}
 					/>
 				)}
 				<Select
