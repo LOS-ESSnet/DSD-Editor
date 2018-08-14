@@ -180,16 +180,56 @@ export default {
 		fr: 'Portée',
 		en: 'Range',
 	},
+	rangePlaceholder: {
+		fr: 'Définir la portée du composant ...',
+		en: 'Define component range ...',
+	},
 	conceptTitle: {
 		fr: 'Concept',
 		en: 'Concept',
+	},
+	conceptPlaceholder: {
+		fr: 'Associer un concept au composant ...',
+		en: 'Bind a concept into the component ...',
 	},
 	codeListTitle: {
 		fr: 'Liste de codes',
 		en: 'Code list',
 	},
+	codeListPlaceholder: {
+		fr: 'Associer une liste de codes au composant ...',
+		en: 'Bind a code list into the component ...',
+	},
+	responseTitle: {
+		fr: 'Réponse',
+		en: 'Response',
+	},
 	componentTypeTitle: {
-		fr: 'Type de composant ...',
-		en: 'Component type ...',
+		fr: 'Type de composant',
+		en: 'Component type',
+	},
+	componentTypePlaceholder: {
+		fr: 'Définir le type du composant ...',
+		en: 'Define component type ...',
+	},
+	attachementTitle: {
+		fr: "Portée de l'attribut",
+		en: 'Attribut scope',
+	},
+	attachementPlaceholder: {
+		fr: "Définir la portée de l'attribut ...",
+		en: 'Define the scope of the attribut ...',
+	},
+	isCodedTitle: {
+		fr: 'La réponse est-elle codée ?',
+		en: 'Is the answer coded ?',
+	},
+	yes: {
+		fr: 'Oui',
+		en: 'Yes',
+	},
+	no: {
+		fr: 'Non',
+		en: 'No',
 	},
 };
