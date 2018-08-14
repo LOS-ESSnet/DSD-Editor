@@ -15,7 +15,7 @@ yarn start
 
 ## W3C Data Cube DSDs Model
 
-!["DSDs Model"](https://github.com/LOS-ESSnet/DSD-Editor/tree/master/docs/img/qb.png)
+!["DSDs Model"](./docs/img/qb.png)
 
 ## DSD-Editor Model
 
