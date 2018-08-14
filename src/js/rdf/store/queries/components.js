@@ -107,8 +107,8 @@ const getComponentRange = componentURI => {
 			s => {
 				range = {
 					URI: s.value,
-					labelFr: getLiteralByLang(s.value, getURI('skos', 'prefLabel'), 'fr'),
-					labelEn: getLiteralByLang(s.value, getURI('rdfs', 'prefLabel'), 'en'),
+					labelFr: getLiteralByLang(s.value, getURI('rdfs', 'label'), 'fr'),
+					labelEn: getLiteralByLang(s.value, getURI('rdfs', 'label'), 'en'),
 				};
 			},
 			componentURI,

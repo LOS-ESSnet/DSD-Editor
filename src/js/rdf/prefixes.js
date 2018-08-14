@@ -7,6 +7,7 @@ export const PREFIXES = {
 	dcterms: 'http://purl.org/dc/terms/',
 	dc: 'http://purl.org/dc/elements/1.1/',
 	qb: 'http://purl.org/linked-data/cube#',
+	sdmx: 'http://purl.org/linked-data/sdmx#',
 	'sdmx-concept': 'http://purl.org/linked-data/sdmx/2009/concept#',
 	'sdmx-dimension': 'http://purl.org/linked-data/sdmx/2009/dimension#',
 	'sdmx-measure': 'http://purl.org/linked-data/sdmx/2009/measure#',

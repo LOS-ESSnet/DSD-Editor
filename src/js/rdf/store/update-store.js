@@ -1,6 +1,6 @@
 import N3, { DataFactory } from 'n3';
 import FileSaver from 'file-saver';
-import store from 'js/rdf/store';
+import store, { getRange } from 'js/rdf/store';
 import { PREFIXES } from 'js/rdf/prefixes';
 import {
 	setDSDURI,
@@ -83,20 +83,39 @@ export const writeDSD = DSD => {
 			)
 		);
 		_.push(quad(blank, getURI('qb', c.type), c.URI, graph));
+		if (c.attachement) {
+			_.push(
+				quad(blank, getURI('qb', 'componentAttachment'), c.attachement, graph)
+			);
+		}
 		_.push(
 			quad(
 				c.URI,
 				getURI('rdf', 'type'),
-				getComponentTypePredicat(c.type),
+				getURI('qb', getComponentTypePredicat(c.type)),
 				graph
 			)
 		);
+		if (c.isCoded) {
+			_.push(
+				quad(c.URI, getURI('rdf', 'type'), getURI('qb', 'CodedProperty'), graph)
+			);
+			_.push(quad(c.URI, getURI('qb', 'codeList'), c.codeListURI, graph));
+			_.push(
+				quad(c.URI, getURI('rdfs', 'range'), getRange(c.codeListURI), graph)
+			);
+		}
 		_.push(
 			quad(c.URI, getURI('rdfs', 'label'), literal(c.labelFr, 'fr'), graph)
 		);
 		_.push(
 			quad(c.URI, getURI('rdfs', 'label'), literal(c.labelEn, 'en'), graph)
 		);
+		_.push(quad(c.URI, getURI('dc', 'identifier'), literal(c.id), graph));
+		if (!c.isCoded) {
+			_.push(quad(c.URI, getURI('rdfs', 'range'), c.rangeURI, graph));
+		}
+		_.push(quad(c.URI, getURI('qb', 'concept'), c.conceptURI, graph));
 		return _;
 	}, generalQuads);
 	store.addQuads(quads);
