@@ -55,6 +55,7 @@ class Import extends Component {
 						addOn={setDSDGraph('')}
 						value={graph}
 						onChange={this.onChangeGraph}
+						placeholder={D.graphPlaceholder}
 					/>
 				)}
 				{type && (

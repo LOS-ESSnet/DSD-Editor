@@ -6,6 +6,7 @@ import Components from './components';
 import D from 'js/i18n';
 import { dsdEditionMessage } from 'js/utils/edition-utils';
 import { setComponentURI } from 'js/rdf/naming';
+import { cleanId } from 'js/utils/string-utils';
 
 class Edition extends Component {
 	constructor(props) {
@@ -20,7 +21,10 @@ class Edition extends Component {
 			components: [],
 		};
 		this.state = { ...defaultState, ...props.data };
-		this.onChange = (field, value) => this.setState({ [field]: value });
+		this.onChange = (field, value) =>
+			field === 'id'
+				? this.setState({ [field]: cleanId(value) })
+				: this.setState({ [field]: value });
 		this.changeURI = URI => {
 			this.setState({ URI });
 		};

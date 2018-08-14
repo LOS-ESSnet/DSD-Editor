@@ -11,6 +11,10 @@ export default {
 		fr: 'Importer',
 		en: 'Import',
 	},
+	graphPlaceholder: {
+		fr: 'Identifiant de la DSD',
+		en: 'DSD Identifier',
+	},
 	selectFilesPlaceholder: {
 		fr: 'Choisisser un type de fichier ...',
 		en: 'Select a file type ...',

@@ -15,7 +15,7 @@ export const getDSDs = () => {
 	store.forSubjects(
 		s =>
 			DSDs.push({
-				id: getObject(s.value, getURI('dc', 'identifier')),
+				id: getObject(s.value, getURI('dcterms', 'identifier')),
 				label: getLiteralByLang(s.value, getURI('rdfs', 'label'), 'fr'),
 			}),
 		null,
@@ -25,7 +25,11 @@ export const getDSDs = () => {
 };
 
 export const getDSD = dsdId => ({
-	id: dsdId,
+	id: getObject(
+		setDSDURI(dsdId),
+		getURI('dcterms', 'identifier'),
+		setDSDGraph(dsdId)
+	),
 	descriptionFr: getLiteralByLang(
 		setDSDURI(dsdId),
 		getURI('dc', 'description'),

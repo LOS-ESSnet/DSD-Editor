@@ -37,7 +37,7 @@ const buildGetDetailedComponents = (dsdId, type) => {
 			components.push({
 				URI: c.value,
 				type,
-				id: getObject(c.value, getURI('dc', 'identifier')),
+				id: getObject(c.value, getURI('dcterms', 'identifier')),
 				labelFr: getLiteralByLang(c.value, getURI('rdfs', 'label'), 'fr'),
 				labelEn: getLiteralByLang(c.value, getURI('rdfs', 'label'), 'en'),
 				conceptURI: getComponentConcept(c.value).URI,

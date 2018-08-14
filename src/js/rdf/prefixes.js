@@ -9,17 +9,6 @@ export const PREFIXES = {
 	qb: 'http://purl.org/linked-data/cube#',
 	sdmx: 'http://purl.org/linked-data/sdmx#',
 	'sdmx-concept': 'http://purl.org/linked-data/sdmx/2009/concept#',
-	'sdmx-dimension': 'http://purl.org/linked-data/sdmx/2009/dimension#',
-	'sdmx-measure': 'http://purl.org/linked-data/sdmx/2009/measure#',
-	'sdmx-attribute': 'http://purl.org/linked-data/sdmx/2009/attribute#',
-	idim: 'http://id.insee.fr/meta/dimension/',
-	iatt: 'http://id.insee.fr/meta/attribut/',
-	icon: 'http://id.insee.fr/meta/concept/',
-	imes: 'http://id.insee.fr/meta/mesure/',
-	'icod-aq': 'http://id.insee.fr/codes/ageq65/',
-	'icod-dep2012': 'http://id.insee.fr/codes/cog2012/departement/',
-	'icod-sx': 'http://id.insee.fr/codes/sexe/',
-	'icod-ta': 'http://id.insee.fr/codes/tactr/',
 };
 
 export const getURI = (NS, res) => `${PREFIXES[NS] || ''}${res}`;

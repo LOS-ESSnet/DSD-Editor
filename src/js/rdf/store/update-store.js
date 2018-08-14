@@ -111,7 +111,7 @@ export const writeDSD = DSD => {
 		_.push(
 			quad(c.URI, getURI('rdfs', 'label'), literal(c.labelEn, 'en'), graph)
 		);
-		_.push(quad(c.URI, getURI('dc', 'identifier'), literal(c.id), graph));
+		_.push(quad(c.URI, getURI('dcterms', 'identifier'), literal(c.id), graph));
 		if (!c.isCoded) {
 			_.push(quad(c.URI, getURI('rdfs', 'range'), c.rangeURI, graph));
 		}
