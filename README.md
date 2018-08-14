@@ -15,7 +15,7 @@ yarn start
 
 ## W3C Data Cube DSDs Model
 
-[!["DSDs Model"](https://github.com/LOS-ESSnet/DSD-Editor/tree/master/docs/img/qb.png 'DSDs Model')](https://www.w3.org/TR/vocab-data-cube/)
+!["DSDs Model"](https://github.com/LOS-ESSnet/DSD-Editor/tree/master/docs/img/qb.png 'DSDs Model')
 
 ## DSD-Editor Model
 
@@ -48,7 +48,7 @@ yarn start
 | Range      | rdfs:range         | xsd type or URI              |
 | CodeList   | qb:codeList        | URI (ComponentSpecification) |
 
-{type} can only be one of : _Attribute, Dimension, Measure or Coded_
+{type} can only be one of : _Attribute, Dimension, Measure or Coded_  
 A Component Property can also combine types.
 
 ### Linkable Concepts
