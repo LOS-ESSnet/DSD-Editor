@@ -38,4 +38,4 @@ _:b8 a qb:ComponentSpecification;
     rdfs:label "Ma mesure"@fr, "My mesure"@en;
     dcterms:identifier "m";
     rdfs:range xsd:int;
-    qb:concept sdmx-concept:statPop
+    qb:concept sdmx-concept:statPop.
