@@ -8,19 +8,15 @@ class Components extends Component {
 		super();
 		this.state = {
 			checked: { attribute: true, dimension: true, measure: true },
-			URI: '',
 		};
 		this.onCheck = field => {
 			const { checked } = this.state;
 			this.setState({ checked: { ...checked, [field]: !checked[field] } });
 		};
-		this.changeURI = URI => {
-			this.setState({ URI });
-		};
 	}
 	render() {
-		const { components } = this.props;
-		const { checked, URI } = this.state;
+		const { components, URI } = this.props;
+		const { checked } = this.state;
 		const component = components.find(c => c.URI === URI) || {};
 		return (
 			<div className="components">
@@ -33,7 +29,7 @@ class Components extends Component {
 							checked={checked}
 							onCheck={this.onCheck}
 							components={components}
-							onChange={this.changeURI}
+							onChange={this.props.changeURI}
 						/>
 					</div>
 					<div className="col-md-6">

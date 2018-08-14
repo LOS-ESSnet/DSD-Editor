@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import Button from 'js/components/shared/button';
 import Input from 'js/components/shared/input';
 import Select from 'js/components/shared/select';
+import Radio from 'js/components/shared/radio';
+import Controls from './controls';
 import D from 'js/i18n';
-import { componentTypes } from 'js/rdf/naming';
+import { getComponentTypes, getTypes, getAttachements } from 'js/rdf/naming';
+import { getCodeLists, getConcepts } from 'js/rdf/store';
 
 const defaultComponent = {
 	id: '',
 	type: '',
+	attachement: '',
 	labelFr: '',
 	labelEn: '',
 	conceptURI: '',
@@ -56,6 +60,7 @@ class DetailsEdition extends Component {
 
 	render() {
 		const { edition, component } = this.state;
+		const { isCoded } = component;
 		if (!edition)
 			return (
 				<div className="row">
@@ -90,19 +95,65 @@ class DetailsEdition extends Component {
 				<Select
 					id="type"
 					label={D.componentTypeTitle}
-					value={componentTypes.find(c => c.value === component.type) || {}}
-					placeholder={D.componentTypeTitle}
-					options={componentTypes}
+					value={getComponentTypes().find(c => c.value === component.type)}
+					placeholder={D.componentTypePlaceholder}
+					options={getComponentTypes()}
 					onChange={e => this.onChange('type', e.value)}
 				/>
-				<div className="row">
-					<div className="col-md-4 col-md-offset-1">
-						<Button label={D.btnDelete} action={this.delete} col={12} />
-					</div>
-					<div className="col-md-4 col-md-offset-2">
-						<Button label={D.btnValid} action={this.valid} col={12} />
-					</div>
-				</div>
+				{component.type === 'attribute' && (
+					<Select
+						id="attachement"
+						label={D.attachementTitle}
+						value={getAttachements().find(
+							c => c.value === component.attachement
+						)}
+						placeholder={D.attachementPlaceholder}
+						options={getAttachements()}
+						onChange={e => this.onChange('attachement', e.value)}
+					/>
+				)}
+				<Select
+					id="concept"
+					label={D.conceptTitle}
+					value={getConcepts().find(c => c.value === component.conceptURI)}
+					placeholder={D.conceptPlaceholder}
+					options={getConcepts()}
+					onChange={e => this.onChange('conceptURI', e.value)}
+				/>
+				<Radio
+					id="isCoded"
+					label={D.isCodedTitle}
+					answers={[
+						{ value: isCoded, label: D.yes },
+						{ value: !isCoded, label: D.no },
+					]}
+					onChange={() => this.onChange('isCoded', !isCoded)}
+				/>
+				{isCoded && (
+					<Select
+						id="codeList"
+						label={D.responseTitle}
+						value={getCodeLists().find(t => t.value === component.codeListURI)}
+						placeholder={D.codeListPlaceholder}
+						options={getCodeLists()}
+						onChange={e => this.onChange('codeListURI', e.value)}
+					/>
+				)}
+				{!isCoded && (
+					<Select
+						id="range"
+						label={D.rangeTitle}
+						value={getTypes().find(t => t.value === component.rangeURI)}
+						placeholder={D.rangePlaceholder}
+						options={getTypes()}
+						onChange={e => this.onChange('rangeURI', e.value)}
+					/>
+				)}
+				<Controls
+					component={component}
+					deleteAction={this.delete}
+					validAction={this.valid}
+				/>
 			</React.Fragment>
 		);
 	}

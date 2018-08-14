@@ -11,6 +11,7 @@ class Edition extends Component {
 	constructor(props) {
 		super();
 		const defaultState = {
+			URI: '',
 			id: '',
 			labelFr: '',
 			labelEn: '',
@@ -20,6 +21,9 @@ class Edition extends Component {
 		};
 		this.state = { ...defaultState, ...props.data };
 		this.onChange = (field, value) => this.setState({ [field]: value });
+		this.changeURI = URI => {
+			this.setState({ URI });
+		};
 		this.addComponent = component => {
 			const { components } = this.state;
 			const { type, id, ...newComponent } = component;
@@ -47,6 +51,7 @@ class Edition extends Component {
 	render() {
 		const { title, creation } = this.props;
 		const {
+			URI,
 			id,
 			labelFr,
 			labelEn,
@@ -117,6 +122,8 @@ class Edition extends Component {
 					components={components}
 					addComponent={this.addComponent}
 					deleteComponent={this.deleteComponent}
+					URI={URI}
+					changeURI={this.changeURI}
 				/>
 			</React.Fragment>
 		);
