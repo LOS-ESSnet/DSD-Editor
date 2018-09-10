@@ -9,7 +9,7 @@ export default () => (
 			<h1>{D.welcome}</h1>
 		</div>
 		<div className="container">
-			<Router>
+			<Router basename={process.env.PUBLIC_URL}>
 				<Routes />
 			</Router>
 		</div>
