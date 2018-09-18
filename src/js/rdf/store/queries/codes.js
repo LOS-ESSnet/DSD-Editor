@@ -16,7 +16,7 @@ export const getCodeLists = () => {
 			});
 		},
 		null,
-		getURI('sdmx', 'CodeList')
+		getURI('skos', 'ConceptScheme')
 	);
 	return sortArrayByLabel(
 		codeList.map(({ URI, labelFr, labelEn }) => ({
