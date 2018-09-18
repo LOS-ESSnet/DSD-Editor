@@ -73,7 +73,7 @@ export const writeDSD = DSD => {
 	];
 	const quads = components.reduce((_, c) => {
 		const blank = store.createBlankNode().id;
-		_.push(quad(DSDURI, getURI('qb', 'Component'), blank, graph));
+		_.push(quad(DSDURI, getURI('qb', 'component'), blank, graph));
 		_.push(
 			quad(
 				blank,
